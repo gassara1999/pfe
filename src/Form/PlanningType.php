@@ -2,27 +2,29 @@
 
 namespace App\Form;
 
-use App\Entity\Client;
+use App\Entity\Planning;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ClientType extends AbstractType
+class PlanningType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ClientName')
-            ->add('mail')
-            ->add('phone')
-            ->add('birthday')
+            ->add('activity')
+            ->add('roomNumber')
+            ->add('BeginHour')
+            ->add('EndHour')
+            ->add('date')
+            
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Client::class,
+            'data_class' => Planning::class,
         ]);
     }
 }

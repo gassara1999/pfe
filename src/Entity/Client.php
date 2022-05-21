@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClientRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ClientRepository::class)]
@@ -21,6 +23,17 @@ class Client
 
     #[ORM\Column(type: 'date')]
     private $birthday;
+
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: Membership::class)]
+    private $membership;
+
+    #[ORM\Column(type: 'string', length: 100)]
+    private $mail;
+
+    public function __construct()
+    {
+        $this->membership = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -59,6 +72,48 @@ class Client
     public function setBirthday(\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Membership>
+     */
+    public function getMembership(): Collection
+    {
+        return $this->membership;
+    }
+
+    public function addMembership(Membership $membership): self
+    {
+        if (!$this->membership->contains($membership)) {
+            $this->membership[] = $membership;
+            $membership->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMembership(Membership $membership): self
+    {
+        if ($this->membership->removeElement($membership)) {
+            // set the owning side to null (unless already changed)
+            if ($membership->getClient() === $this) {
+                $membership->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
 
         return $this;
     }

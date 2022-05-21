@@ -33,9 +33,7 @@ class UserType extends AbstractType
             ->add('password')
             ->add('UserName')
             ->add('phone')
-            ->add('ModifiedAt')
-            ->add('createdAt')
-            ->add('blocked')
+            
         ;
     }
 

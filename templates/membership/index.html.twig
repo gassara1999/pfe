@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Membership index{% endblock %}
+
+{% block body %}
+    <h1>Membership index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>client Name</th>
+                <th>Membership type</th>
+                <th>DateBegin</th>
+                <th>EndDate</th>
+                <th>price</th>
+                <th>actions</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for membership in memberships %}
+            <tr>
+                <td>{{ membership.id }}</td>
+                <td>{{ membership.Client }}</td>
+                <td>{{ membership.membershipType }}</td>
+                <td>{{ membership.DateBegin ? membership.DateBegin|date('Y-m-d') : '' }}</td>
+                <td>{{ membership.EndDate ? membership.EndDate|date('Y-m-d') : '' }}</td>
+                <td>{{ membership.price }}</td>
+                <td>
+                    <a href="{{ path('app_membership_show', {'id': membership.id}) }}">show</a>
+                    <a href="{{ path('app_membership_edit', {'id': membership.id}) }}">edit</a>
+                    <a href="{{ path('app_membership_delete', {'id': membership.id}) }}">delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_membership_new') }}">Create new</a>
+{% endblock %}
