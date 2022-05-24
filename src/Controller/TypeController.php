@@ -10,8 +10,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 #[Route('/type')]
+#[IsGranted('ROLE_ADMIN')]
 class TypeController extends AbstractController
 {
     #[Route('/', name: 'app_type_index', methods: ['GET'])]

@@ -15,7 +15,7 @@ class MembershipType
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(type: 'string')]
     private $Membershiptype;
 
     #[ORM\Column(type: 'text')]

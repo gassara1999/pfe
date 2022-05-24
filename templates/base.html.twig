@@ -16,7 +16,7 @@
     <body>
          <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">MyGym</a>
+    <a class="navbar-brand" href="{{ path('app_home') }}">MyGym</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -41,7 +41,7 @@
           <a class="nav-link" href="{{ path('app_membership_index') }}">Membership</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="">Membership type</a>
+          <a class="nav-link" href="{{ path('app_type_index') }}">Membership type</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ path('app_activity_index') }}">Activity</a>

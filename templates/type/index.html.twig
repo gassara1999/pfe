@@ -11,7 +11,7 @@
                 <th>Id</th>
                 <th>Membershiptype</th>
                 <th>Description</th>
-                <th>Price</th>
+                
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,7 +21,7 @@
                 <td>{{ membership_type.id }}</td>
                 <td>{{ membership_type.Membershiptype }}</td>
                 <td>{{ membership_type.description }}</td>
-                <td>{{ membership_type.price }}</td>
+                
                 <td>
                     <a href="{{ path('app_type_show', {'id': membership_type.id}) }}">show</a>
                     <a href="{{ path('app_type_edit', {'id': membership_type.id}) }}">edit</a>
