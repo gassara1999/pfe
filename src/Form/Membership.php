@@ -23,7 +23,7 @@ class MembershipType extends AbstractType
             ])
             ->add('MembershipType',EntityType::class,[
                 'mapped' =>false,
-                'class' => Type::class,
+                'class' => \App\Entity\MembershipType::class,
                 'label' => 'membership type',
                 'placeholder' => 'type',
             ])
