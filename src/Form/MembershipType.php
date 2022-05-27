@@ -2,28 +2,37 @@
 
 namespace App\Form;
 
-use App\Entity\Planning;
+use App\Entity\Membership;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class PlanningType extends AbstractType
+
+
+
+class MembershipType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             
-            ->add('roomNumber')
-            ->add('BeginHour')
-            ->add('EndHour')
-            ->add('date',DateType::class,
-            ["label" => "date",
+            ->add('DateBegin',DateType::class,
+            ["label" => "begin date",
                 "required" => false,
                 'empty_data' => '',
                 'widget' => 'single_text',
                 'attr' => ['autocomplete' => 'off']
             ])
+            ->add('EndDate',DateType::class,
+            ["label" => "end date",
+                "required" => false,
+                'empty_data' => '',
+                'widget' => 'single_text',
+                'attr' => ['autocomplete' => 'off']
+            ])
+            ->add('price',)
+            
             
         ;
     }
@@ -31,7 +40,7 @@ class PlanningType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Planning::class,
+            'data_class' => Membership::class,
         ]);
     }
 }

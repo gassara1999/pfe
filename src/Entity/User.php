@@ -8,7 +8,6 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
-#[ORM\HasLifecycleCallbacks]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -31,16 +30,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer')]
     private $phone;
 
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $ModfiedAt;
+
+    #[ORM\Column(type: 'datetime_immutable', nullable: true)]
+    private $CreatedAt;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $Blocked;
+
     
 
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $updatedAt;
-
-    #[ORM\Column(type: 'datetime_immutable')]
-    private $createdAt;
-
-    #[ORM\Column(type: 'boolean')]
-    private $blocked;
 
     public function getId(): ?int
     {
@@ -142,64 +142,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
+    public function getModfiedAt(): ?\DateTimeImmutable
+    {
+        return $this->ModfiedAt;
+    }
 
-    
+    public function setModfiedAt(?\DateTimeImmutable $ModfiedAt): self
+    {
+        $this->ModfiedAt = $ModfiedAt;
+
+        return $this;
+    }
 
     public function getCreatedAt(): ?\DateTimeImmutable
     {
-        return $this->createdAt;
+        return $this->CreatedAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): self
+    public function setCreatedAt(?\DateTimeImmutable $CreatedAt): self
     {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getBlocked(): ?bool
-    {
-        return $this->blocked;
-    }
-
-    public function setBlocked(bool $blocked): self
-    {
-        $this->blocked = $blocked;
-
-        return $this;
-    }
-
-    #[ORM\PrePersist]
-    public function setCreatedAtValue(): void
-    {
-        $this->createdAt = new \DateTimeImmutable();
-        $this->updatedAt = new \DateTimeImmutable();
-
-        if(is_null($this->blocked)){
-            $this->blocked = false;
-        }
-    }
-
-    #[ORM\PreUpdate]
-    public function setUpdatedAtValue(): void
-    {
-        $this->updatedAt = new \DateTimeImmutable();
-    }
-
-    public function getUpdatedAt(): ?\DateTimeImmutable
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeImmutable $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
+        $this->CreatedAt = $CreatedAt;
 
         return $this;
     }
 
     public function isBlocked(): ?bool
     {
-        return $this->blocked;
+        return $this->Blocked;
     }
+
+    public function setBlocked(?bool $Blocked): self
+    {
+        $this->Blocked = $Blocked;
+
+        return $this;
+    }
+
+
+
+    
 }

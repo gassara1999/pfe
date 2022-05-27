@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Create new Client</h1>
 
-    {{ include('client/_form.html.twig') }}
+    {{ include('client/_form.html.twig') }}<br>
 
-    <a href="{{ path('app_client_index') }}">back to list</a>
+    <a href="{{ path('app_client_index') }}" button type="button" class="btn btn-primary btn-lg">back to list</a>
 {% endblock %}

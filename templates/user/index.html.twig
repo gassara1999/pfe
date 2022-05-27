@@ -3,7 +3,7 @@
 {% block title %}User index{% endblock %}
 
 {% block body %}
-    <h1>User index</h1>
+    <h1>our users and coaches</h1>
 
     <table class="table">
         <thead>
@@ -13,6 +13,7 @@
                 <th>Roles</th>
                 <th>UserName</th>
                 <th>Phone</th>
+                <th>ModifiedAt</th>
                 <th>CreatedAt</th>
                 <th>Blocked</th>
                 <th>actions</th>
@@ -26,8 +27,9 @@
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
                 <td>{{ user.UserName }}</td>
                 <td>{{ user.phone }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.blocked ? 'Yes' : 'No' }}</td>
+                <td>{{ user.ModfiedAt ? user.ModfiedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.CreatedAt ? user.CreatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ user.Blocked ? 'Yes' : 'No' }}</td>
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
