@@ -2,17 +2,20 @@
 
 namespace App\Controller;
 
+use App\Repository\ClientRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
 class HomeController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
-    public function index(): Response
+    #[Route('/', name: 'app_home')]
+#[IsGranted('ROLE_ADMIN')]
+    public function index(ClientRepository $clientRepository): Response
     {
-        return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
+        return $this->render('client/index.html.twig', [
+            'clients' => $clientRepository->findAll(),
         ]);
     }
 }

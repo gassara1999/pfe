@@ -1,4 +1,18 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="row">
+        <div class="col-12">
+            {{ form_row(form.Membershiptype) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            {{ form_row(form.description) }}
+        </div>
+    </div>
+    <div class="row">
+        <di class="col-12">
+            <button class="btn btn-success" type="submit">Save</button>
+            <button class="btn btn-danger" type="reset">Reset</button>
+        </di>
+    </div>
 {{ form_end(form) }}

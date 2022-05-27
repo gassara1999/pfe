@@ -19,17 +19,17 @@ class Membership
     #[ORM\Column(type: 'date')]
     private $EndDate;
 
-    #[ORM\Column(type: 'decimal', precision: 4, scale: 2)]
+    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
     private $price;
 
 
-    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'membership')]
+    #[ORM\ManyToOne(targetEntity: Client::class, inversedBy: 'memberships')]
     #[ORM\JoinColumn(nullable: false)]
     private $client;
 
-    #[ORM\ManyToOne(targetEntity: MembershipType::class, inversedBy: 'type')]
+    #[ORM\ManyToOne(targetEntity: MembershipType::class, inversedBy: 'memberships')]
     #[ORM\JoinColumn(nullable: false)]
-    private $membershipType;
+    private $type;
 
     
 
@@ -73,17 +73,7 @@ class Membership
 
         return $this;
     }
-    public function getMembershipType(): ?MembershipType
-    {
-        return $this->membershipType;
-    }
 
-    public function setMembershipType(?MembershipType $membershipType): self
-    {
-        $this->membershipType = $membershipType;
-
-        return $this;
-    }
     public function getPrice(): ?string
     {
         return $this->price;
@@ -92,6 +82,18 @@ class Membership
     public function setPrice(string $price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getType(): ?MembershipType
+    {
+        return $this->type;
+    }
+
+    public function setType(?MembershipType $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

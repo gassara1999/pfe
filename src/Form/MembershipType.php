@@ -2,8 +2,12 @@
 
 namespace App\Form;
 
+use App\Entity\Client;
 use App\Entity\Membership;
+use App\Entity\MembershipType as Type;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -31,7 +35,27 @@ class MembershipType extends AbstractType
                 'widget' => 'single_text',
                 'attr' => ['autocomplete' => 'off']
             ])
-            ->add('price',)
+            ->add('price', TextType::class, [
+                "label" => "Price",
+                "required" => false,
+                'attr' => [
+                    'autocomplete' => 'off',
+                    'placeholder' => 'Price']
+            ])
+            ->add('client', EntityType::class, [
+                'class' => Client::class,
+                'choice_label' => 'ClientName',
+                'placeholder' => '',
+                'label' => 'Client',
+                'required' => false,
+            ])
+            ->add('type', EntityType::class, [
+                'class' => Type::class,
+                'choice_label' => 'Membershiptype',
+                'placeholder' => '',
+                'label' => 'Type',
+                'required' => false,
+            ])
             
             
         ;

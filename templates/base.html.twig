@@ -58,8 +58,17 @@
       </div>
       </div>
       </nav>
-        {% block body %}
-        
-        {% endblock %}
+
+            <div class="container-fluid">
+                {% for type in ['danger', 'info', 'success'] %}
+                    {% for flash_message in app.session.flashBag.get(type) %}
+                        <div class="alert alert-{{ type }}" role="alert">
+                            {{ flash_message }}
+                        </div>
+                    {% endfor %}
+                {% endfor %}
+                {% block body %}
+                {% endblock %}
+            </div>
     </body>
 </html>

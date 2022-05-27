@@ -4,7 +4,13 @@
 
 {% block body %}
     <h1>Membership Types </h1>
-
+    <div class="row">
+        <div class="col-12">
+            <p align="right">
+                <a href="{{ path('app_type_new') }}" class="btn btn-outline-success">Create new</a>
+            </p>
+        </div>
+    </div>
     <table class="table">
         <thead>
             <tr>
@@ -35,6 +41,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_type_new') }}">Create new</a>
 {% endblock %}

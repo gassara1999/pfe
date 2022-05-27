@@ -6,6 +6,7 @@ use App\Repository\MembershipTypeRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: MembershipTypeRepository::class)]
 class MembershipType
@@ -16,18 +17,21 @@ class MembershipType
     private $id;
 
     #[ORM\Column(type: 'string')]
+    #[Assert\NotBlank]
     private $Membershiptype;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank]
     private $description;
 
     
-    #[ORM\OneToMany(mappedBy: 'membershipType', targetEntity: Membership::class)]
-    private $type;
+    #[ORM\OneToMany(targetEntity: Membership::class, mappedBy: 'type')]
+    private $memberships;
 
     public function __construct()
     {
         $this->type = new ArrayCollection();
+        $this->memberships = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -58,35 +62,37 @@ class MembershipType
         return $this;
     }
 
-   
-
     /**
      * @return Collection<int, Membership>
      */
-    public function getType(): Collection
+    public function getMemberships(): Collection
     {
-        return $this->type;
+        return $this->memberships;
     }
 
-    public function addType(Membership $type): self
+    public function addMembership(Membership $membership): self
     {
-        if (!$this->type->contains($type)) {
-            $this->type[] = $type;
-            $type->setMembershipType($this);
+        if (!$this->memberships->contains($membership)) {
+            $this->memberships[] = $membership;
+            $membership->setType($this);
         }
 
         return $this;
     }
 
-    public function removeType(Membership $type): self
+    public function removeMembership(Membership $membership): self
     {
-        if ($this->type->removeElement($type)) {
+        if ($this->memberships->removeElement($membership)) {
             // set the owning side to null (unless already changed)
-            if ($type->getMembershipType() === $this) {
-                $type->setMembershipType(null);
+            if ($membership->getType() === $this) {
+                $membership->setType(null);
             }
         }
 
         return $this;
     }
+
+   
+
+    
 }

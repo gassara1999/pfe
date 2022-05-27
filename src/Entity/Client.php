@@ -25,7 +25,7 @@ class Client
     private $birthday;
 
     #[ORM\OneToMany(mappedBy: 'client', targetEntity: Membership::class)]
-    private $membership;
+    private $memberships;
 
     #[ORM\Column(type: 'string', length: 100)]
     private $mail;
@@ -33,6 +33,7 @@ class Client
     public function __construct()
     {
         $this->membership = new ArrayCollection();
+        $this->memberships = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,35 +77,7 @@ class Client
         return $this;
     }
 
-    /**
-     * @return Collection<int, Membership>
-     */
-    public function getMembership(): Collection
-    {
-        return $this->membership;
-    }
-
-    public function addMembership(Membership $membership): self
-    {
-        if (!$this->membership->contains($membership)) {
-            $this->membership[] = $membership;
-            $membership->setClient($this);
-        }
-
-        return $this;
-    }
-
-    public function removeMembership(Membership $membership): self
-    {
-        if ($this->membership->removeElement($membership)) {
-            // set the owning side to null (unless already changed)
-            if ($membership->getClient() === $this) {
-                $membership->setClient(null);
-            }
-        }
-
-        return $this;
-    }
+    
 
     public function getMail(): ?string
     {
@@ -114,6 +87,36 @@ class Client
     public function setMail(string $mail): self
     {
         $this->mail = $mail;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Membership>
+     */
+    public function getMemberships(): Collection
+    {
+        return $this->memberships;
+    }
+
+    public function addMembership(Membership $membership): self
+    {
+        if (!$this->memberships->contains($membership)) {
+            $this->memberships[] = $membership;
+            $membership->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMembership(Membership $membership): self
+    {
+        if ($this->memberships->removeElement($membership)) {
+            // set the owning side to null (unless already changed)
+            if ($membership->getClient() === $this) {
+                $membership->setClient(null);
+            }
+        }
 
         return $this;
     }

@@ -22,8 +22,8 @@
         {% for membership in memberships %}
             <tr>
                 <td>{{ membership.id }}</td>
-                <td>{{ membership.Client }}</td>
-                <td>{{ membership.membershipType }}</td>
+                <td>{{ membership.Client.ClientName }}</td>
+                <td>{{ membership.type.Membershiptype }}</td>
                 <td>{{ membership.DateBegin ? membership.DateBegin|date('Y-m-d') : '' }}</td>
                 <td>{{ membership.EndDate ? membership.EndDate|date('Y-m-d') : '' }}</td>
                 <td>{{ membership.price }}</td>
