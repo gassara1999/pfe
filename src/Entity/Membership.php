@@ -19,7 +19,7 @@ class Membership
     #[ORM\Column(type: 'date')]
     private $EndDate;
 
-    #[ORM\Column(type: 'decimal', precision: 10, scale: 2)]
+    #[ORM\Column(type: 'string')]
     private $price;
 
 
@@ -73,7 +73,8 @@ class Membership
 
         return $this;
     }
-
+  
+    
     public function getPrice(): ?string
     {
         return $this->price;
@@ -85,16 +86,13 @@ class Membership
 
         return $this;
     }
-
     public function getType(): ?MembershipType
     {
         return $this->type;
-    }
-
+    }    
     public function setType(?MembershipType $type): self
     {
         $this->type = $type;
-
         return $this;
     }
 

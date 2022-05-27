@@ -38,9 +38,7 @@ class TypeController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager->persist($membershipType);
             $entityManager->flush();
-
             $this->addFlash("success", "New membership type successfully created");
-
             return $this->redirectToRoute('app_type_index', [], Response::HTTP_SEE_OTHER);
         }
 

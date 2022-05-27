@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -38,6 +40,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $Blocked;
+
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private $Speciality;
+
+    #[ORM\Column(type: 'string', length: 100, nullable: true)]
+    private $Salary;
+
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: PrivateCoaching::class)]
+    private $PrivateCoach;
+
+    public function __construct()
+    {
+        $this->PrivateCoach = new ArrayCollection();
+    }
 
     
 
@@ -174,6 +190,60 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setBlocked(?bool $Blocked): self
     {
         $this->Blocked = $Blocked;
+
+        return $this;
+    }
+
+    public function getSpeciality(): ?string
+    {
+        return $this->Speciality;
+    }
+
+    public function setSpeciality(?string $Speciality): self
+    {
+        $this->Speciality = $Speciality;
+
+        return $this;
+    }
+
+    public function getSalary(): ?string
+    {
+        return $this->Salary;
+    }
+
+    public function setSalary(?string $Salary): self
+    {
+        $this->Salary = $Salary;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, PrivateCoaching>
+     */
+    public function getPrivateCoach(): Collection
+    {
+        return $this->PrivateCoach;
+    }
+
+    public function addPrivateCoach(PrivateCoaching $privateCoach): self
+    {
+        if (!$this->PrivateCoach->contains($privateCoach)) {
+            $this->PrivateCoach[] = $privateCoach;
+            $privateCoach->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrivateCoach(PrivateCoaching $privateCoach): self
+    {
+        if ($this->PrivateCoach->removeElement($privateCoach)) {
+            // set the owning side to null (unless already changed)
+            if ($privateCoach->getUser() === $this) {
+                $privateCoach->setUser(null);
+            }
+        }
 
         return $this;
     }

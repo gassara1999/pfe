@@ -4,10 +4,15 @@
 
 {% block body %}
     <h1>Edit Planning</h1>
+    <div class="col-12">
+            <p align="right">
+                <a href="{{ path('app_planning_new') }}" class="btn btn-outline-success">back to list</a>
+            </p>
+        </div>
+
 
     {{ include('planning/_form.html.twig', {'button_label': 'Update'}) }}
 
-    <a href="{{ path('app_planning_index') }}">back to list</a>
 
     {{ include('planning/_delete_form.html.twig') }}
 {% endblock %}

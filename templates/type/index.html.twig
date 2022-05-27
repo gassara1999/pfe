@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>Membership Types </h1>
-    <div class="row">
+       <div class="row">
         <div class="col-12">
             <p align="right">
                 <a href="{{ path('app_type_new') }}" class="btn btn-outline-success">Create new</a>
@@ -29,9 +29,9 @@
                 <td>{{ membership_type.description }}</td>
                 
                 <td>
-                    <a href="{{ path('app_type_show', {'id': membership_type.id}) }}">show</a>
-                    <a href="{{ path('app_type_edit', {'id': membership_type.id}) }}">edit</a>
-                     <a href="{{ path('app_type_delete', {'id': membership_type.id}) }}">delete</a>
+                    <a href="{{ path('app_type_show', {'id': membership_type.id}) }} button type="button" class="btn btn-primary"">show</a>
+                    <a href="{{ path('app_type_edit', {'id': membership_type.id}) }}" button type="button" class="btn btn-success">edit</a>
+                     <a href="{{ path('app_type_delete', {'id': membership_type.id}) }}" button type="button" class="btn btn-danger">delete</a>
                 </td>
             </tr>
         {% else %}
@@ -41,4 +41,5 @@
         {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}

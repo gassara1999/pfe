@@ -4,8 +4,13 @@
 
 {% block body %}
     <h1>Create new Membership</h1>
+     <div class="row">
+        <div class="col-12">
+            <p align="right">
+            <a href="{{ path('app_membership_index') }}"  class="btn btn-outline-success">back to list</a>
+            </p>
+        </div> 
 
     {{ include('membership/_form.html.twig') }}
 
-    <a href="{{ path('app_membership_index') }}">back to list</a>
 {% endblock %}

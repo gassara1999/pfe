@@ -2,44 +2,50 @@
 
 namespace App\Form;
 
-use App\Entity\Activity;
-use App\Entity\Planning;
+use App\Entity\User;
+use App\Entity\Client;
+use App\Entity\PrivateCoaching;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
-class PlanningType extends AbstractType
+class PrivateCoachingType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('activity', EntityType::class, [
-                'class' => Activity::class,
-                'choice_label' => 'Activity Name',
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'UserName',
                 'placeholder' => '',
-                'label' => 'Activity',
+                'label' => 'Coach',
                 'required' => false,
             ])
-            ->add('roomNumber')
-            ->add('BeginHour')
-            ->add('EndHour')
-            ->add('date',DateType::class,
-            ["label" => "date",
+            ->add('client', EntityType::class, [
+                'class' => Client::class,
+                'choice_label' => 'Client Name',
+                'placeholder' => '',
+                'label' => 'Client',
+                'required' => false,
+            ])
+            ->add('DateSession',DateType::class,
+            ["label" => "Session date",
                 "required" => false,
                 'empty_data' => '',
                 'widget' => 'single_text',
                 'attr' => ['autocomplete' => 'off']
             ])
-            
+            ->add('BeginHour')
+            ->add('EndHour')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Planning::class,
+            'data_class' => PrivateCoaching::class,
         ]);
     }
 }

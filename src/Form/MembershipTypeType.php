@@ -14,22 +14,23 @@ class MembershipTypeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('Membershiptype', TextType::class, [
-                "label" => "Membership Type",
-                "required" => false,
-                'attr' => [
-                    'autocomplete' => 'off',
-                    'placeholder' => 'Membership Type']
-            ])
-            ->add('description', TextareaType::class, [
-                "label" => "Description",
-                "required" => false,
-                'attr' => [
-                    'autocomplete' => 'off',
-                    'placeholder' => 'Description'],
-            ])
+        ->add('Membershiptype', TextType::class, [
+            "label" => "Membership Type",
+            "required" => false,
+            'attr' => [
+                'autocomplete' => 'off',
+                'placeholder' => 'Membership Type']
+        ])
+        ->add('description', TextareaType::class, [
+            "label" => "Description",
+            "required" => false,
+            'attr' => [
+                'autocomplete' => 'off',
+                'placeholder' => 'Description'],
+        ])
+        ;  
             
-        ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver): void

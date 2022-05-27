@@ -20,7 +20,20 @@ class MembershipType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            
+        ->add('client', EntityType::class, [
+            'class' => Client::class,
+            'choice_label' => 'Client Name',
+            'placeholder' => '',
+            'label' => 'Client',
+            'required' => false,
+        ])
+        ->add('type', EntityType::class, [
+            'class' => Type::class,
+            'choice_label' => 'Membership type',
+            'placeholder' => '',
+            'label' => 'Type',
+            'required' => false,
+        ])
             ->add('DateBegin',DateType::class,
             ["label" => "begin date",
                 "required" => false,
@@ -42,20 +55,9 @@ class MembershipType extends AbstractType
                     'autocomplete' => 'off',
                     'placeholder' => 'Price']
             ])
-            ->add('client', EntityType::class, [
-                'class' => Client::class,
-                'choice_label' => 'ClientName',
-                'placeholder' => '',
-                'label' => 'Client',
-                'required' => false,
-            ])
-            ->add('type', EntityType::class, [
-                'class' => Type::class,
-                'choice_label' => 'Membershiptype',
-                'placeholder' => '',
-                'label' => 'Type',
-                'required' => false,
-            ])
+           
+
+            
             
             
         ;

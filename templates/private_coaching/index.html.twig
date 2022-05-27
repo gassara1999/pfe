@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PrivateCoaching index{% endblock %}
+
+{% block body %}
+    <h1>PrivateCoaching index</h1>
+     <div class="row">
+        <div class="col-12">
+            <p align="right">
+                <a href="{{ path('app_private_coaching_new') }}" class="btn btn-outline-success">Create new</a>
+            </p>
+        </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>coaches</th>
+                <th>Clients</th>
+                <th>DateSession</th>
+                <th>BeginHour</th>
+                <th>EndHour</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for private_coaching in private_coachings %}
+            <tr>
+                <td>{{ private_coaching.id }}</td>
+                <td>{{ private_coaching.User.UserName }}</td>
+                <td>{{ private_coaching.Client.ClientName }}</td>
+                <td>{{ private_coaching.DateSession ? private_coaching.DateSession|date('Y-m-d') : '' }}</td>
+                <td>{{ private_coaching.BeginHour }}</td>
+                <td>{{ private_coaching.EndHour }}</td>
+                <td>
+                    <a href="{{ path('app_private_coaching_show', {'id': private_coaching.id}) }}" button type="button" class="btn btn-primary ">show</a>
+                    <a href="{{ path('app_private_coaching_edit', {'id': private_coaching.id}) }}" button type="button" class="btn btn-success" >edit</a>
+                    <a href="{{ path('app_private_coaching_delete', {'id': private_coaching.id}) }}" button type="button" class="btn btn-danger" >delete</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

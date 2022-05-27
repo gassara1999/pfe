@@ -23,7 +23,6 @@ security:
         
       logout:
         path: app_logout
-      
 
 
 

@@ -30,10 +30,13 @@ class Client
     #[ORM\Column(type: 'string', length: 100)]
     private $mail;
 
+    #[ORM\OneToMany(mappedBy: 'client', targetEntity: PrivateCoaching::class)]
+    private $Privatecoaching;  
+
     public function __construct()
     {
-        $this->membership = new ArrayCollection();
         $this->memberships = new ArrayCollection();
+        $this->Privatecoaching = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -76,21 +79,7 @@ class Client
 
         return $this;
     }
-
     
-
-    public function getMail(): ?string
-    {
-        return $this->mail;
-    }
-
-    public function setMail(string $mail): self
-    {
-        $this->mail = $mail;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Membership>
      */
@@ -120,4 +109,47 @@ class Client
 
         return $this;
     }
+
+    public function getMail(): ?string
+    {
+        return $this->mail;
+    }
+
+    public function setMail(string $mail): self
+    {
+        $this->mail = $mail;
+
+        return $this;
+    }
+     /**
+     * @return Collection<int, PrivateCoaching>
+     */
+    public function getPrivatecoaching(): Collection
+    {
+        return $this->Privatecoaching;
+    }
+
+    public function addPrivatecoaching(PrivateCoaching $privatecoaching): self
+    {
+        if (!$this->Privatecoaching->contains($privatecoaching)) {
+            $this->Privatecoaching[] = $privatecoaching;
+            $privatecoaching->setClient($this);
+        }
+
+        return $this;
+    }
+
+    public function removePrivatecoaching(PrivateCoaching $privatecoaching): self
+    {
+        if ($this->Privatecoaching->removeElement($privatecoaching)) {
+            // set the owning side to null (unless already changed)
+            if ($privatecoaching->getClient() === $this) {
+                $privatecoaching->setClient(null);
+            }
+        }
+
+        return $this;
+    }
+
+   
 }

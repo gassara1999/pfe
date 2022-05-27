@@ -62,6 +62,8 @@ class MembershipType
         return $this;
     }
 
+   
+
     /**
      * @return Collection<int, Membership>
      */
@@ -80,10 +82,11 @@ class MembershipType
         return $this;
     }
 
+   
+    
     public function removeMembership(Membership $membership): self
     {
         if ($this->memberships->removeElement($membership)) {
-            // set the owning side to null (unless already changed)
             if ($membership->getType() === $this) {
                 $membership->setType(null);
             }
@@ -91,8 +94,5 @@ class MembershipType
 
         return $this;
     }
-
-   
-
     
 }

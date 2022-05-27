@@ -4,6 +4,12 @@
 
 {% block body %}
     <h1>Client</h1>
+    <div class="row">
+        <div class="col-12">
+            <p align="right">
+            <a href="{{ path('app_client_index') }}"  class="btn btn-outline-success">back to list</a>
+            </p>
+        </div> 
 
     <table class="table">
         <tbody>
@@ -25,8 +31,6 @@
             </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('app_client_index') }}" button type="button" class="btn btn-primary btn-lg">back to list</a> 
 
     <a href="{{ path('app_client_edit', {'id': client.id}) }}" button type="button" class="btn btn-success">edit</a> 
 
