@@ -4,6 +4,8 @@
 
 {% block body %}
     <h1>Activity</h1>
+	<div class="show-Container">
+
     <div class="row">
         <div class="col-12">
             <p align="right">
@@ -12,7 +14,7 @@
         </div>    
 
 
-    <table class="table">
+    <table class="table show-table">
         <tbody>
             <tr>
                 <th>Id</th>
@@ -30,8 +32,11 @@
     </table>
 
     
+<div>
 
-    <a href="{{ path('app_activity_edit', {'id': activity.id}) }}" class="btn btn-success">edit</a>
+    <a href="{{ path('app_activity_edit', {'id': activity.id}) }}" class="btn btn-success edit-btn-show">edit</a>
 
-    {{ include('activity/_delete_form.html.twig') }}
+    {{ include('activity/_delete_form.html.twig') }}</div>
+        </div>    
+
 {% endblock %}

@@ -1,19 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Activity{% endblock %}
+{% block title %}Edit Activity
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Activity</h1>
-    <div class="row">
-        <div class="col-12">
-            <p align="right">
-            <a href="{{ path('app_activity_index') }}"  class="btn btn-outline-success">back to list</a>
-            </p>
-        </div>  
+	<div class="edit-Container">
+		<h1>Edit Activity</h1>
+		<div class="row">
+			<div class="col-12">
+				<p align="right">
+					<a href="{{ path('app_activity_index') }}" class="btn btn-outline-success">back to list</a>
+				</p>
+			</div>
 
-    {{ include('activity/_form.html.twig', {'button_label': 'Update'}) }}
+			{{ include('activity/_form.html.twig', {'button_label': 'Update'}) }}
 
-    
 
-    {{ include('activity/_delete_form.html.twig') }}
-{% endblock %}
+			{{ include('activity/_delete_form.html.twig') }}
+		</div>
+	{% endblock %}

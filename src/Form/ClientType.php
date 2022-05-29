@@ -7,16 +7,16 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
-
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ClientType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('ClientName')
-            ->add('mail')
-            ->add('phone')
+            ->add('ClientName',TextType::class,["required" => false,])
+            ->add('mail',TextType::class,["required" => false,])
+            ->add('phone',TextType::class,['attr' => ["maxlength"=>8,"minlength"=>8]])
             ->add('birthday',DateType::class,
             ["label" => "birthday",
                 "required" => false,

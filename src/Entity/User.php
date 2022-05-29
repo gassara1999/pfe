@@ -8,6 +8,8 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints\Length;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
@@ -24,7 +26,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $roles = [];
 
     #[ORM\Column(type: 'string')]
-    private $password;
+    
+    private $password; 
 
     #[ORM\Column(type: 'string', length: 100)]
     private $UserName;
@@ -50,9 +53,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: PrivateCoaching::class)]
     private $PrivateCoach;
 
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Planning::class)]
+    private $Plan;
+
     public function __construct()
     {
         $this->PrivateCoach = new ArrayCollection();
+        $this->Plan = new ArrayCollection();
     }
 
     
@@ -242,6 +249,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($privateCoach->getUser() === $this) {
                 $privateCoach->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Planning>
+     */
+    public function getPlan(): Collection
+    {
+        return $this->Plan;
+    }
+
+    public function addPlan(Planning $plan): self
+    {
+        if (!$this->Plan->contains($plan)) {
+            $this->Plan[] = $plan;
+            $plan->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removePlan(Planning $plan): self
+    {
+        if ($this->Plan->removeElement($plan)) {
+            // set the owning side to null (unless already changed)
+            if ($plan->getUser() === $this) {
+                $plan->setUser(null);
             }
         }
 

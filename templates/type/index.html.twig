@@ -11,10 +11,9 @@
             </p>
         </div>
     </div>
-    <table class="table">
+    <table class="table index-table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>Membershiptype</th>
                 <th>Description</th>
                 
@@ -24,14 +23,12 @@
         <tbody>
         {% for membership_type in membership_types %}
             <tr>
-                <td>{{ membership_type.id }}</td>
                 <td>{{ membership_type.Membershiptype }}</td>
                 <td>{{ membership_type.description }}</td>
                 
                 <td>
                     <a href="{{ path('app_type_show', {'id': membership_type.id}) }} button type="button" class="btn btn-primary"">show</a>
                     <a href="{{ path('app_type_edit', {'id': membership_type.id}) }}" button type="button" class="btn btn-success">edit</a>
-                     <a href="{{ path('app_type_delete', {'id': membership_type.id}) }}" button type="button" class="btn btn-danger">delete</a>
                 </td>
             </tr>
         {% else %}

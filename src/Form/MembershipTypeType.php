@@ -16,14 +16,14 @@ class MembershipTypeType extends AbstractType
         $builder
         ->add('Membershiptype', TextType::class, [
             "label" => "Membership Type",
-            "required" => false,
+            "required" => true,
             'attr' => [
                 'autocomplete' => 'off',
                 'placeholder' => 'Membership Type']
         ])
         ->add('description', TextareaType::class, [
             "label" => "Description",
-            "required" => false,
+            "required" => true,
             'attr' => [
                 'autocomplete' => 'off',
                 'placeholder' => 'Description'],

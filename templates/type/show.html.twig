@@ -1,35 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}MembershipType{% endblock %}
+{% block title %}MembershipType
+{% endblock %}
 
 {% block body %}
-    <h1>Membership Type</h1>
-     <div class="row">
-        <div class="col-12">
-            <p align="right">
-            <a href="{{ path('app_type_index') }}"  class="btn btn-outline-success">back to list</a>
-            </p>
-        </div> 
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ membership_type.id }}</td>
-            </tr>
-            <tr>
-                <th>Membershiptype</th>
-                <td>{{ membership_type.Membershiptype }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ membership_type.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<div class="show-Container">
+		<h1>Membership Type</h1>
+		<div class="row">
+			<div class="col-12">
+				<p align="right">
+					<a href="{{ path('app_type_index') }}" class="btn btn-outline-success">back to list</a>
+				</p>
+			</div>
+
+			<table class="table show-table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ membership_type.id }}</td>
+					</tr>
+					<tr>
+						<th>Membershiptype</th>
+						<td>{{ membership_type.Membershiptype }}</td>
+					</tr>
+					<tr>
+						<th>Description</th>
+						<td>{{ membership_type.description }}</td>
+					</tr>
+				</tbody>
+			</table>
 
 
-    <a href="{{ path('app_type_edit', {'id': membership_type.id}) }}" button type="button" class="btn btn-success" >edit</a>
-
-    {{ include('type/_delete_form.html.twig') }}
-{% endblock %}
+			<div>
+				<a href="{{ path('app_type_edit', {'id': membership_type.id}) }}" button type="button" class="btn btn-success edit-btn-show">edit</a>
+				{{ include('type/_delete_form.html.twig') }}
+			</div>
+		</div>
+	{% endblock %}

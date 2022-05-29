@@ -12,10 +12,9 @@
         </div>
 
 
-    <table class="table">
+    <table class="table index-table">
         <thead>
             <tr>
-                <th>Id</th>
                 <th>ActivityName</th>
                 <th>Description</th>
                 <th>actions</th>
@@ -24,12 +23,11 @@
         <tbody>
         {% for activity in activities %}
             <tr>
-                <td>{{ activity.id }}</td>
                 <td>{{ activity.ActivityName }}</td>
-                <td>{{ activity.description }}</td>
+                <td class="descTD">{{ activity.description }}</td>
                 <td>
-                    <th><a href="{{ path('app_activity_show', {'id': activity.id}) }}" button type="button" class="btn btn-primary">show</a></th>
-                    <th><a href="{{ path('app_activity_edit', {'id': activity.id}) }}" button type="button" class="btn btn-success">edit</a></th>
+                    <a href="{{ path('app_activity_show', {'id': activity.id}) }}" button type="button" class="btn btn-primary">show</a>
+                    <a href="{{ path('app_activity_edit', {'id': activity.id}) }}" button type="button" class="btn btn-success">edit</a>
                     
                 </td>
             </tr>

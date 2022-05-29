@@ -1,44 +1,49 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Planning{% endblock %}
+{% block title %}Planning
+{% endblock %}
 
 {% block body %}
-    <h1>Planning</h1>
-     <div class="row">
-        <div class="col-12">
-            <p align="right">
-            <a href="{{ path('app_planning_index') }}"  class="btn btn-outline-success">back to list</a>
-            </p>
-        </div> 
+	<div class="show-Container">
+		<h1>Planning</h1>
+		<div class="row">
+			<div class="col-12">
+				<p align="right">
+					<a href="{{ path('app_planning_index') }}" class="btn btn-outline-success">back to list</a>
+				</p>
+			</div>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ planning.id }}</td>
-            </tr>
-            <tr>
-                <th>RoomNumber</th>
-                <td>{{ planning.roomNumber }}</td>
-            </tr>
-            <tr>
-                <th>BeginHour</th>
-                <td>{{ planning.BeginHour }}</td>
-            </tr>
-            <tr>
-                <th>EndHour</th>
-                <td>{{ planning.EndHour }}</td>
-            </tr>
-            <tr>
-                <th>Date</th>
-                <td>{{ planning.date ? planning.date|date('Y-m-d') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
+			<table class="table show-table">
+				<tbody>
+					<tr>
+						<th>Id</th>
+						<td>{{ planning.id }}</td>
+					</tr>
+					<tr>
+						<th>RoomNumber</th>
+						<td>{{ planning.roomNumber }}</td>
+					</tr>
+					<tr>
+						<th>BeginHour</th>
+						<td>{{ planning.BeginHour }}</td>
+					</tr>
+					<tr>
+						<th>EndHour</th>
+						<td>{{ planning.EndHour }}</td>
+					</tr>
+					<tr>
+						<th>Date</th>
+						<td>{{ planning.date ? planning.date|date('Y-m-d') : '' }}</td>
+					</tr>
+				</tbody>
+			</table>
 
-    
 
-    <a href="{{ path('app_planning_edit', {'id': planning.id}) }}" button type="button" class="btn btn-success" >edit</a>
+			<div>
+				<a href="{{ path('app_planning_edit', {'id': planning.id}) }}" button type="button" class="btn btn-success edit-btn-show">edit</a>
 
-    {{ include('planning/_delete_form.html.twig') }}
-{% endblock %}
+				{{ include('planning/_delete_form.html.twig') }}</div>
+		</div>
+
+
+	{% endblock %}

@@ -1,17 +1,17 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit MembershipType{% endblock %}
+{% block title %}Edit MembershipType
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Membership Type</h1>
-    <div class="col-12">
-            <p align="right">
-                <a href="{{ path('app_type_new') }}" class="btn btn-outline-success">back to list</a>
-            </p>
-        </div>
-
-    {{ include('type/_form.html.twig', {'button_label': 'Update'}) }}
-
-  
-    {{ include('type/_delete_form.html.twig') }}
+	<div class="edit-Container">
+		<h1>Edit Membership Type</h1>
+		<div class="col-12">
+			<p align="right">
+				<a href="{{ path('app_type_new') }}" class="btn btn-outline-success">back to list</a>
+			</p>
+		</div>
+		{{ include('type/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('type/_delete_form.html.twig') }}
+	</div>
 {% endblock %}

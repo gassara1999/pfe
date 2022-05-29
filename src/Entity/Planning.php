@@ -28,6 +28,9 @@ class Planning
     #[ORM\ManyToOne(targetEntity: Activity::class, inversedBy: 'planning')]
     private $activity;
 
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'Plan')]
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Planning
     public function setActivity(?Activity $activity): self
     {
         $this->activity = $activity;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }

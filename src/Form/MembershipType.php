@@ -5,12 +5,13 @@ namespace App\Form;
 use App\Entity\Client;
 use App\Entity\Membership;
 use App\Entity\MembershipType as Type;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 
 
 
@@ -25,32 +26,37 @@ class MembershipType extends AbstractType
             'choice_label' => 'Client Name',
             'placeholder' => '',
             'label' => 'Client',
-            'required' => false,
+            'required' => true,
         ])
         ->add('type', EntityType::class, [
             'class' => Type::class,
             'choice_label' => 'Membership type',
             'placeholder' => '',
             'label' => 'Type',
-            'required' => false,
+            'required' => true,
         ])
             ->add('DateBegin',DateType::class,
             ["label" => "begin date",
-                "required" => false,
+                "required" => true,
                 'empty_data' => '',
                 'widget' => 'single_text',
                 'attr' => ['autocomplete' => 'off']
             ])
             ->add('EndDate',DateType::class,
             ["label" => "end date",
-                "required" => false,
+                "required" => true,
+                'constraints' => [
+                    new GreaterThan([
+                        'propertyPath' => 'parent.all[DateBegin].data'
+                    ]),
+                ],
                 'empty_data' => '',
                 'widget' => 'single_text',
                 'attr' => ['autocomplete' => 'off']
             ])
             ->add('price', TextType::class, [
                 "label" => "Price",
-                "required" => false,
+                "required" => true,
                 'attr' => [
                     'autocomplete' => 'off',
                     'placeholder' => 'Price']

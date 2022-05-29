@@ -10,6 +10,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class PrivateCoachingType extends AbstractType
 {
@@ -21,24 +22,28 @@ class PrivateCoachingType extends AbstractType
                 'choice_label' => 'UserName',
                 'placeholder' => '',
                 'label' => 'Coach',
-                'required' => false,
+                'required' => true,
             ])
             ->add('client', EntityType::class, [
                 'class' => Client::class,
                 'choice_label' => 'Client Name',
                 'placeholder' => '',
                 'label' => 'Client',
-                'required' => false,
+                'required' => true,
             ])
             ->add('DateSession',DateType::class,
             ["label" => "Session date",
-                "required" => false,
+                "required" => true,
                 'empty_data' => '',
                 'widget' => 'single_text',
                 'attr' => ['autocomplete' => 'off']
             ])
-            ->add('BeginHour')
-            ->add('EndHour')
+            ->add('BeginHour',TextType::class,[
+                "required" => true
+                ])
+            ->add('EndHour',TextType::class,[
+                "required" => true
+                ])
         ;
     }
 

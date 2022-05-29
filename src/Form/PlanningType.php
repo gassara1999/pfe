@@ -2,13 +2,17 @@
 
 namespace App\Form;
 
+use App\Entity\User;
 use App\Entity\Activity;
 use App\Entity\Planning;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class PlanningType extends AbstractType
 {
@@ -20,11 +24,24 @@ class PlanningType extends AbstractType
                 'choice_label' => 'Activity Name',
                 'placeholder' => '',
                 'label' => 'Activity',
-                'required' => false,
+                'required' => true,
             ])
-            ->add('roomNumber')
-            ->add('BeginHour')
-            ->add('EndHour')
+            ->add('user', EntityType::class, [
+                'class' => User::class,
+                'choice_label' => 'UserName',
+                'placeholder' => '',
+                'label' => 'Coach',
+                'required' => true,
+                ])
+            ->add('roomNumber',IntegerType::class,[
+                "required" => true
+                ])
+            ->add('BeginHour',TextType::class,[
+                "required" => true
+                ])
+            ->add('EndHour',TextType::class,[
+                "required" => true
+                ])
             ->add('date',DateType::class,
             ["label" => "date",
                 "required" => false,
