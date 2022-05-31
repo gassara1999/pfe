@@ -21,9 +21,6 @@
                 <th>Phone</th>
                 <th>speciality</th>
                 <th>salary</th>
-                <th>ModifiedAt</th>
-                <th>CreatedAt</th>
-                
                 <th>actions</th>
             </tr>
         </thead>
@@ -37,8 +34,6 @@
                 <td>{{ user.phone }}</td>
                 <td>{{ user.speciality }}</td>
                 <td>{{ user.salary }}</td>
-                <td>{{ user.ModfiedAt ? user.ModfiedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.CreatedAt ? user.CreatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 
                 <td>
                     <a href="{{ path('app_user_show', {'id': user.id}) }}" button type="button" class="btn btn-primary">show</a>

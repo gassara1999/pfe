@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PrivateCoaching{% endblock %}
+{% block title %}Private Coaching session{% endblock %}
 
 {% block body %}
-<div class="show-Container"><h1>Private Coaching</h1>
+
+<div class="show-Container"><h1>Private Coaching session</h1>
     <div class="col-12">
             <p align="right">
                 <a href="{{ path('app_private_coaching_index') }}" class="btn btn-outline-success">back to list</a>
@@ -16,6 +17,14 @@
             <tr>
                 <th>Id</th>
                 <td>{{ private_coaching.id }}</td>
+            </tr>
+            <tr>
+                <th>Coach</th>
+                <td>{{ private_coaching.User.UserName }}</td>
+            </tr>
+            <tr>
+                <th>Client</th>
+                <td>{{ private_coaching.Client.ClientName }}</td>
             </tr>
             <tr>
                 <th>DateSession</th>

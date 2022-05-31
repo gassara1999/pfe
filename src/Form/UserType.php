@@ -43,6 +43,9 @@ class UserType extends AbstractType
             ->add('phone',TextType::class,['attr' => ["maxlength"=>8,"minlength"=>8]])
             ->add('speciality')
             ->add('salary')
+            ->add('ModfiedAt')
+            ->add('CreatedAt')
+
             
         ;
     }

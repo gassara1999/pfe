@@ -5,7 +5,7 @@
 
 {% block body %}
 	<div class="show-Container">
-		<h1>Membership</h1>
+		<h1>Membership of the client</h1>
 		<div class="row">
 			<div class="col-12">
 				<p align="right">
@@ -20,12 +20,24 @@
 						<td>{{ membership.id }}</td>
 					</tr>
 					<tr>
+						<th>client Name</th>
+						<td>{{ membership.Client.ClientName }}</td>
+					</tr>
+					<tr>
+						<th>Membership type</th>
+						<td>{{ membership.type.MembershipType }}</td>
+					</tr>
+					<tr>
 						<th>DateBegin</th>
 						<td>{{ membership.DateBegin ? membership.DateBegin|date('Y-m-d') : '' }}</td>
 					</tr>
 					<tr>
 						<th>EndDate</th>
 						<td>{{ membership.EndDate ? membership.EndDate|date('Y-m-d') : '' }}</td>
+					</tr>
+					<tr>
+						<th>Price</th>
+						<td>{{ membership.price }}</td>
 					</tr>
 				</tbody>
 			</table>

@@ -36,7 +36,7 @@ class UserController extends AbstractController
             
             $data = $request->request->all();
 
-            $plaintextPassword = $data['user']['password'];
+            $plaintextPassword = $data['user']['password']['first'];
 
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
@@ -74,7 +74,7 @@ class UserController extends AbstractController
             $data = $request->request->all();
 
             if($data['user']['password'] != ''){
-                $plaintextPassword = $data['user']['password'];
+                $plaintextPassword = $data['user']['password']['first'];
 
                 $hashedPassword = $passwordHasher->hashPassword(
                     $user,

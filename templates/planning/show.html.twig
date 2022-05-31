@@ -1,11 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Planning
-{% endblock %}
+{% block title %}Planning{% endblock %}
 
 {% block body %}
 	<div class="show-Container">
-		<h1>Planning</h1>
+		<h1>Our Planning</h1>
 		<div class="row">
 			<div class="col-12">
 				<p align="right">
@@ -20,19 +19,28 @@
 						<td>{{ planning.id }}</td>
 					</tr>
 					<tr>
-						<th>RoomNumber</th>
+						<th>Activity</th>
+						<td>{{ planning.activity.ActivityName }}</td>
+                    </tr>
+					</tr>
+					<tr>
+						<th>Responsible coach</th>
+						<td>{{ planning.User.UserName }}</td>
+					</tr>
+					<tr>
+						<th>Room Number</th>
 						<td>{{ planning.roomNumber }}</td>
 					</tr>
 					<tr>
-						<th>BeginHour</th>
+						<th>Begin Hour</th>
 						<td>{{ planning.BeginHour }}</td>
 					</tr>
 					<tr>
-						<th>EndHour</th>
+						<th>End Hour</th>
 						<td>{{ planning.EndHour }}</td>
 					</tr>
 					<tr>
-						<th>Date</th>
+						<th>Planning date</th>
 						<td>{{ planning.date ? planning.date|date('Y-m-d') : '' }}</td>
 					</tr>
 				</tbody>
